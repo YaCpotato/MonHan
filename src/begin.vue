@@ -108,10 +108,9 @@ Vue.use(VModal)
                 var submitData={}
                 var submitAtom=[]
                 for(var i=0;i<this.multipleSelection.length;i++){
-                    var atomname = (atom.find(this.multipleSelection[i].id)).name
                     submitAtom.push({
-                        id:this.multipleSelection[i],
-                        name:atomname
+                        id:this.multipleSelection[i].id,
+                        name:this.multipleSelection[i].name
                     })
                 }
                 submitData.name=this.moleculeName
@@ -131,8 +130,8 @@ Vue.use(VModal)
                 var result = atom.all()
                 for(var i=0;i<result.length;i++){
                     this.atomList.push({
-                        id:result[i].id,
-                        name:result[i].name
+                        "id":result[i].id,
+                        "name":result[i].name
                     })
                 }
             },
@@ -141,10 +140,10 @@ Vue.use(VModal)
                 var result = molecule.query().with('material').get()
                 for(var i=0;i<result.length;i++){
                     this.moleculereList.push({
-                        id:result[i].id,
-                        name:result[i].name,
-                        type:result[i].type,
-                        material:result[i].material
+                        "id":result[i].id,
+                        "name":result[i].name,
+                        "type":result[i].type,
+                        "material":result[i].material
                     })
                 }
             },
@@ -156,8 +155,8 @@ Vue.use(VModal)
                 for(var i=0;i<Object.keys(val).length;i++){
                     console.log(i)
                     this.currentAtomList.push({
-                        id:val.material[i].id,
-                        atomname:val.material[i].name
+                        "id":val[i].material[i].id,
+                        "atomname":val[i].material[i].name
                     })
                     console.log(this.currentAtomList)
                 }
