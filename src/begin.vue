@@ -23,9 +23,10 @@
                 </el-table-column>
                     </el-table>
                 </el-col>
-        <el-col :span="10">
+        <el-col :span="6">
             <el-table
                 ref="singleTable"
+                highlight-current-row
                 :data="moleculereList"
                 @current-change="handleCurrentChange"
                 style="width: 40vw">
@@ -38,6 +39,23 @@
                 <el-table-column
                     prop="name"
                     label="Molecule Name"
+                    width="150">
+                </el-table-column>
+            </el-table>
+        </el-col>
+        <el-col :span="6">
+            {{ currentMolecule }}
+            <el-table
+                :data="currentAtomList"
+                style="width: 40vw">
+                <el-table-column
+                    prop="id"
+                    label="Atom Id"
+                    width="120">
+                </el-table-column>
+                <el-table-column
+                    prop="atomname"
+                    label="Atom Name"
                     width="150">
                 </el-table-column>
             </el-table>
@@ -71,7 +89,9 @@ Vue.use(VModal)
                 moleculeMaterial:null,
                 atom:{},
                 molecule:{},
-                organism:{}
+                organism:{},
+                currentAtomList:[],
+                currentMolecule:''
             }
         },
         methods:{
@@ -88,9 +108,10 @@ Vue.use(VModal)
                 var submitData={}
                 var submitAtom=[]
                 for(var i=0;i<this.multipleSelection.length;i++){
+                    var atomname = (atom.find(this.multipleSelection[i].id)).name
                     submitAtom.push({
                         id:this.multipleSelection[i],
-                        name:atom.find(this.multipleSelection[i])
+                        name:atomname
                     })
                 }
                 submitData.name=this.moleculeName
@@ -128,7 +149,18 @@ Vue.use(VModal)
                 }
             },
             handleCurrentChange:function(val){
-                console.log(val)
+                console.log('check')
+                // /console.log(val.material[0].name)
+                this.currentMolecule = val.name
+                console.log(val.material)
+                for(var i=0;i<Object.keys(val).length;i++){
+                    console.log(i)
+                    this.currentAtomList.push({
+                        id:val.material[i].id,
+                        atomname:val.material[i].name
+                    })
+                    console.log(this.currentAtomList)
+                }
             }
         }
     }
