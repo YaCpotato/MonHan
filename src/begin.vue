@@ -1,48 +1,48 @@
 <template>
 <div id="app">
-    <router-view/>
-    <el-table
-    ref="multipleTable"
-    :data="atomList"
-    style="width: 100%"
-    @selection-change="handleSelectionChange">
-    <el-table-column
-        type="selection"
-        width="55">
-    </el-table-column>
-    <el-table-column
-        prop="id"
-        label="Atom Id"
-        width="120">
-    </el-table-column>
-    <el-table-column
-        prop="name"
-        label="Atom Name"
-        width="120">
-    </el-table-column>
-  </el-table>
-
-  <el-table
-    ref="singleTable"
-    :data="moleculereList"
-    @current-change="handleCurrentChange"
-    style="width: 100%">
-    <el-table-column
-        type="selection"
-        width="55">
-    </el-table-column>
-    <el-table-column
-        prop="id"
-        label="Molecule Id"
-        width="120">
-    </el-table-column>
-    <el-table-column
-        prop="name"
-        label="Molecule Name"
-        width="120">
-    </el-table-column>
-  </el-table>
-
+    <el-row :gutter="20">
+        <el-col :span="6">
+            <el-table
+            ref="multipleTable"
+            :data="atomList"
+            style="width: 30vw"
+            @selection-change="handleSelectionChange">
+                <el-table-column
+                type="selection"
+                    width="55">
+                </el-table-column>
+                <el-table-column
+                    prop="id"
+                    label="Atom Id"
+                    width="120">
+                </el-table-column>
+                <el-table-column
+                    prop="name"
+                    label="Atom Name"
+                    width="120">
+                </el-table-column>
+                    </el-table>
+                </el-col>
+        <el-col :span="10">
+            <el-table
+                ref="singleTable"
+                :data="moleculereList"
+                @current-change="handleCurrentChange"
+                style="width: 40vw">
+                
+                <el-table-column
+                    prop="id"
+                    label="Molecule Id"
+                    width="120">
+                </el-table-column>
+                <el-table-column
+                    prop="name"
+                    label="Molecule Name"
+                    width="150">
+                </el-table-column>
+            </el-table>
+        </el-col>
+    </el-row>
 
     <el-input v-model="atomName"></el-input>
     <el-button @click="registAtom()">登録</el-button>
@@ -56,9 +56,9 @@ import Vue from 'vue'
 import VModal from 'vue-js-modal'
 import atom from './model/atom'
 import molecule from './model/molecule'
-import organism from './model/organism'
-
+//import organism from './model/organism'
 Vue.use(VModal)
+
     export default{
         data(){
             return{
