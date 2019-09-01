@@ -13,7 +13,6 @@ npm install vuex-orm@core
 これでvuex-ormが使えるようになる
 *このリポジトリクローンするならおそらく不要*
 
-
 ## Vuex-ORMの設定
 1. srcフォルダの下にmodelフォルダを作成する
 ```
